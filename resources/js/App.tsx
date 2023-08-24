@@ -1,12 +1,22 @@
+import { useState, useEffect } from "react";
 import TravelImage from "../../public/images/link_travel.png";
 import PhotographyImage from "../../public/images/link_photography.png";
 import WorkImage from "../../public/images/link_work.png";
-import HeroBackgroundIamge from "../../public/images/background_hero.png";
 import CounterImage from "../../public/images/background_counter.png";
 
 const App = () => {
+    const [screen, setScreen] = useState(window.innerWidth < 768);
+    useEffect(() => {
+        function handleResize() {
+            setScreen(window.innerWidth < 768);
+        }
+        window.addEventListener("resize", handleResize);
+
+        return () => window.removeEventListener("resize", handleResize);
+    }, []);
+    console.log(screen);
     return (
-        <div className="bg-[#F9F9F9]">
+        <div className="bg-[#f9f9f9] p-3">
             <div id="Hero">
                 {/* <div
                     className="flex h-[100px] justify-around gap-12 text-white md:h-[550px]"
@@ -22,7 +32,7 @@ const App = () => {
                     src="./images/background_hero.png"
                     className="w-full"
                 />
-                <div className="absolute top-0 flex w-full items-center justify-center gap-8 text-white">
+                <div className="absolute top-10 flex w-full items-center justify-center gap-8 text-white">
                     <div className="hidden  space-x-6 md:block">
                         <span className="text-[20px] font-bold">ABOUT US</span>
                         <span className="text-[20px] font-bold">EQUIPMENT</span>
@@ -83,17 +93,19 @@ const App = () => {
             <div className="grid grid-cols-1 md:gap-36">
                 <div
                     id="about_us"
-                    className="grid grid-cols-1 justify-between gap-0 px-5 md:grid-cols-2 md:gap-[116px] md:px-[120px]"
+                    className="grid grid-cols-1 justify-between gap-0 px-5  md:grid-cols-2 md:gap-12 md:px-[120px]"
+                    // className="grid grid-cols-2 justify-between gap-0 px-5 md:grid-cols-2 md:gap-[116px] md:px-[120px]"
                 >
                     <img
                         alt="about_us"
                         src="./images/about_us.png"
-                        className="h-[250px] w-[620px] md:h-[400px]"
+                        className="h-[250px] w-full md:h-[400px]"
                     />
                     <div className="flex flex-col justify-between md:py-8">
-                        <p className="text-[32px] font-bold text-[#373737] md:text-[40px]">
-                            ABOUT US
-                        </p>
+                        <div className="flex text-[32px] font-bold text-[#373737] md:text-[40px]">
+                            ABOUT&nbsp;
+                            <p className="underline decoration-[#C0653B]">US</p>
+                        </div>
                         <span className="text-[18px] font-normal">
                             Profitieren Sie von unserer langjährigen Erfahrung
                             als Messefotografen in Hannover und ganz
@@ -107,32 +119,67 @@ const App = () => {
                         </button>
                     </div>
                 </div>
-                <div
-                    id="our_gear"
-                    className="mt-5 flex flex-col-reverse justify-between gap-0 px-5 md:mt-0 md:flex-row md:gap-[116px] md:px-[120px]"
-                >
-                    <div className="flex flex-col justify-between md:py-8">
-                        <p className="text-[32px] font-bold text-[#373737] md:text-[40px]">
-                            OUR GEAR
-                        </p>
-                        <span className="text-[18px] font-normal">
-                            Profitieren Sie von unserer langjährigen Erfahrung
-                            als Messefotografen in Hannover und ganz
-                            Deutschland. Von der klassischen Standfotografie,
-                            über Produktfotografie, bis hin zu Presseevents, der
-                            Begleitung von Delegationen und
-                            Messeveranstaltungen.
-                        </span>
-                        <button className="text-4 mt-5 w-[155px] border-2 border-[#C0653B] px-6 py-2 font-bold text-[#C0653B] md:mt-0    ">
-                            READ MORE
-                        </button>
+                {screen ? (
+                    <div
+                        id="our_gear"
+                        className="mt-5 flex flex-col-reverse gap-0 px-5 md:mt-0 md:justify-between md:gap-12"
+                    >
+                        <div className="flex flex-col justify-between md:py-8">
+                            <div className=" flex text-[32px] font-bold text-[#373737] md:text-[40px]">
+                                OUR&nbsp;
+                                <p className="underline decoration-[#C0653B]">
+                                    GEAR
+                                </p>
+                            </div>
+                            <span className="text-[18px] font-normal">
+                                Profitieren Sie von unserer langjährigen
+                                Erfahrung als Messefotografen in Hannover und
+                                ganz Deutschland. Von der klassischen
+                                Standfotografie, über Produktfotografie, bis hin
+                                zu Presseevents, der Begleitung von Delegationen
+                                und Messeveranstaltungen.
+                            </span>
+                            <button className="text-4 mt-5 w-[155px] border-2 border-[#C0653B] px-6 py-2 font-bold text-[#C0653B] md:mt-0    ">
+                                READ MORE
+                            </button>
+                        </div>
+                        <img
+                            alt="about_us"
+                            src="./images/about_us.png"
+                            className="h-[250px] w-full md:h-[400px]"
+                        />
                     </div>
-                    <img
-                        alt="about_us"
-                        src="./images/about_us.png"
-                        className="h-[250px] w-[620px] md:h-[400px]"
-                    />
-                </div>
+                ) : (
+                    <div
+                        id="our_gear"
+                        className="mt-5 grid grid-cols-1 gap-0 px-5 md:mt-0 md:grid-cols-2 md:justify-between md:gap-12 md:px-[120px]"
+                    >
+                        <div className="flex flex-col justify-between md:py-8">
+                            <div className=" flex text-[32px] font-bold text-[#373737] md:text-[40px]">
+                                OUR&nbsp;
+                                <p className="underline decoration-[#C0653B]">
+                                    GEAR
+                                </p>
+                            </div>
+                            <span className="text-[18px] font-normal">
+                                Profitieren Sie von unserer langjährigen
+                                Erfahrung als Messefotografen in Hannover und
+                                ganz Deutschland. Von der klassischen
+                                Standfotografie, über Produktfotografie, bis hin
+                                zu Presseevents, der Begleitung von Delegationen
+                                und Messeveranstaltungen.
+                            </span>
+                            <button className="text-4 mt-5 w-[155px] border-2 border-[#C0653B] px-6 py-2 font-bold text-[#C0653B] md:mt-0    ">
+                                READ MORE
+                            </button>
+                        </div>
+                        <img
+                            alt="about_us"
+                            src="./images/about_us.png"
+                            className="h-[250px] w-full md:h-[400px]"
+                        />
+                    </div>
+                )}
             </div>
             <div id="counter" className="my-[100px]">
                 <div
@@ -140,7 +187,7 @@ const App = () => {
                         backgroundImage: `url(${CounterImage})`,
                         backgroundSize: "cover",
                         backgroundRepeat: "no-repeat",
-                        height: "280px",
+                        // height: "280px",
                     }}
                     className="  grid grid-cols-1 gap-5 bg-slate-700 py-5 text-white md:grid-cols-3 md:py-[70px]"
                 >
@@ -184,23 +231,24 @@ const App = () => {
                     Aktualisiert am 23.08.2023
                 </div> */}
             </div>
-            <div
-                id="our_work"
-                className=" my-5 grid grid-cols-1 gap-5 md:my-20 md:gap-36"
-            >
+            <div className="grid grid-cols-1 md:gap-36">
                 <div
-                    id="about_us"
-                    className="grid grid-cols-1 justify-between gap-0 px-5 md:grid-cols-2 md:gap-[116px] md:px-[120px]"
+                    id="our_work"
+                    className="grid grid-cols-1 justify-between gap-0 px-5  md:grid-cols-2 md:gap-12 md:px-[120px]"
+                    // className="grid grid-cols-2 justify-between gap-0 px-5 md:grid-cols-2 md:gap-[116px] md:px-[120px]"
                 >
                     <img
-                        alt="about_us"
+                        alt="our_work"
                         src="./images/about_us.png"
-                        className="h-[250px] w-[620px] md:h-[400px]"
+                        className="h-[250px] w-full md:h-[400px]"
                     />
                     <div className="flex flex-col justify-between md:py-8">
-                        <p className="text-[32px] font-bold text-[#373737] md:text-[40px]">
-                            OUR WORK
-                        </p>
+                        <div className="flex text-[32px] font-bold text-[#373737] md:text-[40px]">
+                            Our&nbsp;
+                            <p className="underline decoration-[#C0653B]">
+                                Work
+                            </p>
+                        </div>
                         <span className="text-[18px] font-normal">
                             Profitieren Sie von unserer langjährigen Erfahrung
                             als Messefotografen in Hannover und ganz
@@ -214,32 +262,67 @@ const App = () => {
                         </button>
                     </div>
                 </div>
-                <div
-                    id="our_gear"
-                    className="mt-5 flex flex-col-reverse justify-between gap-0 px-5 md:mt-0 md:flex-row md:gap-[116px] md:px-[120px]"
-                >
-                    <div className="flex flex-col justify-between md:py-8">
-                        <p className="text-[32px] font-bold text-[#373737] md:text-[40px]">
-                            OUR PORTFOLIO
-                        </p>
-                        <span className="text-[18px] font-normal">
-                            Profitieren Sie von unserer langjährigen Erfahrung
-                            als Messefotografen in Hannover und ganz
-                            Deutschland. Von der klassischen Standfotografie,
-                            über Produktfotografie, bis hin zu Presseevents, der
-                            Begleitung von Delegationen und
-                            Messeveranstaltungen.
-                        </span>
-                        <button className="text-4 mt-5 w-[155px] border-2 border-[#C0653B] px-6 py-2 font-bold text-[#C0653B] md:mt-0    ">
-                            READ MORE
-                        </button>
+                {screen ? (
+                    <div
+                        id="our_gear"
+                        className="mt-5 flex flex-col-reverse gap-0 px-5 md:mt-0 md:justify-between md:gap-12"
+                    >
+                        <div className="flex flex-col justify-between md:py-8">
+                            <div className=" flex text-[32px] font-bold text-[#373737] md:text-[40px]">
+                                OUR&nbsp;
+                                <p className="underline decoration-[#C0653B]">
+                                    Portfolio
+                                </p>
+                            </div>
+                            <span className="text-[18px] font-normal">
+                                Profitieren Sie von unserer langjährigen
+                                Erfahrung als Messefotografen in Hannover und
+                                ganz Deutschland. Von der klassischen
+                                Standfotografie, über Produktfotografie, bis hin
+                                zu Presseevents, der Begleitung von Delegationen
+                                und Messeveranstaltungen.
+                            </span>
+                            <button className="text-4 mt-5 w-[155px] border-2 border-[#C0653B] px-6 py-2 font-bold text-[#C0653B] md:mt-0    ">
+                                READ MORE
+                            </button>
+                        </div>
+                        <img
+                            alt="about_us"
+                            src="./images/about_us.png"
+                            className="h-[250px] w-full md:h-[400px]"
+                        />
                     </div>
-                    <img
-                        alt="about_us"
-                        src="./images/about_us.png"
-                        className="h-[250px] w-[620px] md:h-[400px]"
-                    />
-                </div>
+                ) : (
+                    <div
+                        id="our_gear"
+                        className="mt-5 grid grid-cols-1 gap-0 px-5 md:mt-0 md:grid-cols-2 md:justify-between md:gap-12 md:px-[120px]"
+                    >
+                        <div className="flex flex-col justify-between md:py-8">
+                            <div className=" flex text-[32px] font-bold text-[#373737] md:text-[40px]">
+                                OUR&nbsp;
+                                <p className="underline decoration-[#C0653B]">
+                                    Portfolio
+                                </p>
+                            </div>
+                            <span className="text-[18px] font-normal">
+                                Profitieren Sie von unserer langjährigen
+                                Erfahrung als Messefotografen in Hannover und
+                                ganz Deutschland. Von der klassischen
+                                Standfotografie, über Produktfotografie, bis hin
+                                zu Presseevents, der Begleitung von Delegationen
+                                und Messeveranstaltungen.
+                            </span>
+                            <button className="text-4 mt-5 w-[155px] border-2 border-[#C0653B] px-6 py-2 font-bold text-[#C0653B] md:mt-0    ">
+                                READ MORE
+                            </button>
+                        </div>
+                        <img
+                            alt="about_us"
+                            src="./images/about_us.png"
+                            className="h-[250px] w-full md:h-[400px]"
+                        />
+                    </div>
+                )}
             </div>
             <div
                 id="link_box"
@@ -288,28 +371,39 @@ const App = () => {
             </div>
             <div
                 id="feed"
-                className="grid grid-cols-2 justify-center gap-5 px-5 md:grid-cols-2 lg:grid-cols-4"
+                // className="grid grid-cols-2 justify-center gap-5 px-5 md:grid-cols-2 lg:grid-cols-4"
             >
-                <img
-                    alt="feed_1"
-                    src="./images/feed_1.png"
-                    className="mx-auto"
-                />
-                <img
-                    alt="feed_2"
-                    src="./images/feed_2.png"
-                    className="mx-auto"
-                />
-                <img
-                    alt="feed_3"
-                    src="./images/feed_3.png"
-                    className="mx-auto"
-                />
-                <img
-                    alt="feed_4"
-                    src="./images/feed_4.png"
-                    className="mx-auto"
-                />
+                <div className="flex justify-center ">
+                    <div className=" mb-10 flex whitespace-nowrap text-[17px] font-bold text-[#373737] md:text-[40px]">
+                        FOLLOW OUR&nbsp;
+                        <p className="underline decoration-[#C0653B]">
+                            JOURNEY
+                        </p>
+                        &nbsp;ON INSTAGRAM
+                    </div>
+                </div>
+                <div className="grid grid-cols-2 justify-center gap-5 px-5 md:grid-cols-2 lg:grid-cols-4">
+                    <img
+                        alt="feed_1"
+                        src="./images/feed_1.png"
+                        className="mx-auto"
+                    />
+                    <img
+                        alt="feed_2"
+                        src="./images/feed_2.png"
+                        className="mx-auto"
+                    />
+                    <img
+                        alt="feed_3"
+                        src="./images/feed_3.png"
+                        className="mx-auto"
+                    />
+                    <img
+                        alt="feed_4"
+                        src="./images/feed_4.png"
+                        className="mx-auto"
+                    />
+                </div>
             </div>
             <div
                 id="footer"
