@@ -49,7 +49,7 @@ const App = () => {
                         <span className="text-[20px] font-bold">CONTACT</span>
                     </div>
                 </div>
-                <div className="mt-[14px] grid grid-cols-1 gap-10 px-5 md:mt-[-75px] md:grid-cols-3 md:px-40">
+                <div className="mt-[14px] grid grid-cols-1 gap-10 px-5 md:mt-[-74px] md:grid-cols-3 md:px-40">
                     <div className="space-y-4  bg-white p-3 pb-5 text-center">
                         <img src="./images/header_1.png" className="w-full" />
                         <div>
