@@ -9,7 +9,7 @@ This starter template includes:
 -   Axios
 -   TypeScript
 
-## Information
+## Information 
 
 -   The app is located in [`resources/js/`](/resources/js/).
 -   You can use [`resources/css/`](/resources/css/) for styling.
