@@ -1,4 +1,4 @@
-# Laravel 9 + Vite + React + Tailwind CSS
+# Laravel 9 + Vite + React + Tailwind CSS 
 
 This starter template includes: 
 
