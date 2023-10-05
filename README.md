@@ -2,7 +2,7 @@
 
 This starter template includes: 
 
--   Laravel 9
+-   Laravel 9 
 -   Vite
 -   React
 -   Tailwind CSS (w/ `@tailwindcss/forms`)
@@ -16,7 +16,7 @@ This starter template includes:
 
 ## Installation
 
-Install the composer dependencies:
+Install the composer dependencies: 
 
 ```bash
 composer install
